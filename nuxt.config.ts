@@ -17,7 +17,7 @@ const config: Configuration = {
   },
   loading: { color: '#fff' },
   css: ['~/assets/scss/styles/main.scss'],
-  plugins: [],
+  plugins: ['~/plugins/contentful'],
   buildModules: [
     '@nuxtjs/eslint-module',
     '@nuxt/typescript-build',
