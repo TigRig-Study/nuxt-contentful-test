@@ -17,11 +17,12 @@ const config: Configuration = {
   },
   loading: { color: '#fff' },
   css: ['~/assets/scss/styles/main.scss'],
-  plugins: [],
+  plugins: ['~/plugins/contentful'],
   buildModules: [
     '@nuxtjs/eslint-module',
     '@nuxt/typescript-build',
-    '@nuxtjs/stylelint-module'
+    '@nuxtjs/stylelint-module',
+    '@nuxtjs/dotenv'
   ],
   modules: ['@nuxtjs/pwa', '@nuxtjs/style-resources', 'nuxt-fontawesome'],
   styleResources: {
@@ -32,6 +33,12 @@ const config: Configuration = {
   },
   fontawesome: {
     component: 'fa'
+  },
+  env: {
+    // contentful
+    CTF_SPACE_ID: process.env.CTF_SPACE_ID as string,
+    CTF_BLOG_POST_TYPE_ID: process.env.CTF_BLOG_POST_TYPE_ID as string,
+    CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN as string
   },
   build: {
     babel: {
