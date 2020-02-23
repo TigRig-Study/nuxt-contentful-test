@@ -1,20 +1,19 @@
 <template>
   <div class="container">
     <div v-if="posts.length">
-      <ul v-for="(post, i) in posts" :key="i">
+      <ul
+        v-for="(post, i) in posts"
+        :key="i"
+        @click="navigateTo(post.fields.slug)"
+      >
         <li>{{ post.fields.title }}</li>
-        <ul>
+        <li>
           <img
             v-if="post.fields.image !== undefined"
             :src="post.fields.image.fields.file.url"
             :alt="post.fields.image.fields.title"
-            :aspect-ratio="16 / 9"
-            max-width="400"
-            max-height="225"
           />
-          <li>{{ post.fields.body }}</li>
-          <li>{{ post.fields.publishedDate }}</li>
-        </ul>
+        </li>
       </ul>
     </div>
     <div v-else>
@@ -30,6 +29,10 @@ import client from '~/plugins/contentful'
 
 @Component
 export default class Index extends Vue {
+  navigateTo(slug: string) {
+    this.$router.push({ name: 'posts-slug', params: { slug } })
+  }
+
   async asyncData({ env }) {
     let posts: any = []
     await client
