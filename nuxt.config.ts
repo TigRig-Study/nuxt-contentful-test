@@ -1,7 +1,8 @@
 import { Configuration } from '@nuxt/types'
+import client from './plugins/contentful'
 
 const config: Configuration = {
-  mode: 'spa',
+  mode: 'universal',
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -46,6 +47,24 @@ const config: Configuration = {
         ['@babel/plugin-proposal-decorators', { legacy: true }],
         ['@babel/plugin-proposal-class-properties', { loose: true }]
       ]
+    }
+  },
+  generate: {
+    routes() {
+      return client
+        .getEntries({
+          content_type: process.env.CTF_BLOG_POST_TYPE_ID
+        })
+        .then((entries) => {
+          return [
+            ...entries.items.map((entry: any) => {
+              return {
+                route: `posts/${entry.fields.slug}`,
+                payload: entry
+              }
+            })
+          ]
+        })
     }
   }
 }

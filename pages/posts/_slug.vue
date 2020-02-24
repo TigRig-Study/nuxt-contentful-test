@@ -38,7 +38,9 @@ export default class Slug extends Vue {
     return faAngleDoubleLeft
   }
 
-  async asyncData({ env, params }) {
+  async asyncData({ env, params, payload }) {
+    if (payload) return { currentPost: payload }
+
     let currentPost: any = null
     await client
       .getEntries({
@@ -49,7 +51,6 @@ export default class Slug extends Vue {
         currentPost = res.items[0]
       })
       .catch(console.error)
-
     return { currentPost }
   }
 }
