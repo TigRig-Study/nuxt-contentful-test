@@ -1,4 +1,5 @@
 const contentful = require('contentful')
+require('dotenv').config()
 
 const config =
   process.env.NODE_ENV === 'development'

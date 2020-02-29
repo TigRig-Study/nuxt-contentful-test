@@ -39,7 +39,8 @@ const config: Configuration = {
     // contentful
     CTF_SPACE_ID: process.env.CTF_SPACE_ID as string,
     CTF_BLOG_POST_TYPE_ID: process.env.CTF_BLOG_POST_TYPE_ID as string,
-    CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN as string
+    CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN as string,
+    CTF_PREVIEW_ACCESS_TOKEN: process.env.CTF_PREVIEW_ACCESS_TOKEN as string
   },
   build: {
     babel: {
@@ -47,6 +48,11 @@ const config: Configuration = {
         ['@babel/plugin-proposal-decorators', { legacy: true }],
         ['@babel/plugin-proposal-class-properties', { loose: true }]
       ]
+    },
+    extend(config) {
+      config.node = {
+        fs: 'empty'
+      }
     }
   },
   generate: {
