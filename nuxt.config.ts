@@ -16,6 +16,17 @@ const config: Configuration = {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
+  manifest: {
+    name: 'nuxt-contentful-test',
+    short_name: 'nuxt-contentful-test',
+    title: 'nuxt-contentful-test',
+    'og:title': 'nuxt-contentful-test',
+    lang: 'ja',
+    background_color: 'black',
+    theme_color: 'white',
+    display: 'standalone',
+    start_url: '/'
+  },
   loading: { color: '#fff' },
   css: ['~/assets/scss/styles/main.scss'],
   plugins: ['~/plugins/contentful'],
