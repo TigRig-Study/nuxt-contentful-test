@@ -36,7 +36,7 @@ const config: Configuration = {
     '@nuxtjs/stylelint-module',
     '@nuxtjs/dotenv'
   ],
-  modules: ['@nuxtjs/pwa', '@nuxtjs/style-resources', 'nuxt-fontawesome'],
+  modules: ['@nuxtjs/style-resources', 'nuxt-fontawesome'],
   styleResources: {
     scss: [
       '~/assets/scss/variables/main.scss',
