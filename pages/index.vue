@@ -25,10 +25,6 @@ import { blogModule } from '~/store'
 
 @Component
 export default class Index extends Vue {
-  get posts() {
-    return blogModule.posts
-  }
-
   get linkTo() {
     return (name, obj) => {
       return blogModule.linkTo(name, obj)
@@ -37,6 +33,12 @@ export default class Index extends Vue {
 
   navigateTo(blog) {
     this.$router.push(this.linkTo('posts', blog))
+  }
+
+  async asyncData() {
+    await blogModule.getPosts()
+    const posts = blogModule.posts
+    return { posts }
   }
 }
 </script>
