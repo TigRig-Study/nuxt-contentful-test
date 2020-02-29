@@ -1,5 +1,4 @@
-import { blogModule } from '~/store'
-
-export default async () => {
-  if (!blogModule.posts.length) await blogModule.getPosts()
+export default async ({ store }) => {
+  if (!store.state.blogModule.posts.length)
+    await store.dispatch('blogModule/getPosts')
 }
