@@ -1,11 +1,7 @@
 <template>
   <div class="container">
     <div v-if="posts.length">
-      <ul
-        v-for="(post, i) in posts"
-        :key="i"
-        @click="navigateTo(post.fields.slug)"
-      >
+      <ul v-for="(post, i) in posts" :key="i" @click="navigateTo(post)">
         <li>{{ post.fields.title }}</li>
         <li>
           <img
@@ -25,25 +21,22 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import client from '~/plugins/contentful'
+import { blogModule } from '~/store'
 
 @Component
 export default class Index extends Vue {
-  navigateTo(slug: string) {
-    this.$router.push({ name: 'posts-slug', params: { slug } })
+  get posts() {
+    return blogModule.posts
   }
 
-  async asyncData({ env }) {
-    let posts: any = []
-    await client
-      .getEntries({
-        content_type: env.CTF_BLOG_POST_TYPE_ID,
-        order: '-fields.publishedDate'
-      })
-      .then((res) => (posts = res.items))
-      .catch(console.error)
-    console.log(posts)
-    return { posts }
+  get linkTo() {
+    return (name, obj) => {
+      return blogModule.linkTo(name, obj)
+    }
+  }
+
+  navigateTo(blog) {
+    this.$router.push(this.linkTo('posts', blog))
   }
 }
 </script>

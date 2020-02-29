@@ -72,6 +72,9 @@ const config: Configuration = {
           ]
         })
     }
+  },
+  router: {
+    middleware: ['getContentful']
   }
 }
 
