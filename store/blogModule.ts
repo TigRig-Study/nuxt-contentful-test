@@ -18,9 +18,6 @@ export default class BlogModule extends VuexModule {
 
   @Action
   async getPosts() {
-    console.log('test1')
-    console.log('test2', client)
-    console.log('test3', process.env.CTF_BLOG_POST_TYPE_ID)
     await client
       .getEntries({
         content_type: process.env.CTF_BLOG_POST_TYPE_ID,
