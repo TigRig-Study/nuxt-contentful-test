@@ -1,8 +1,6 @@
 import { Configuration } from '@nuxt/types'
 import client from './plugins/contentful'
 
-require('dotenv').config()
-
 const config: Configuration = {
   mode: 'universal',
   head: {
