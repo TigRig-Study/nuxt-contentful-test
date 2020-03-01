@@ -23,10 +23,7 @@ export default class BlogModule extends VuexModule {
         content_type: process.env.CTF_BLOG_POST_TYPE_ID,
         order: '-fields.publishedDate'
       })
-      .then((res) => {
-        console.log('test4', res)
-        this.setPosts(res.items)
-      })
+      .then((res) => this.setPosts(res.items))
       .catch(console.error)
   }
 }
